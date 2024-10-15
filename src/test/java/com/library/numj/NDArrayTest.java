@@ -58,7 +58,13 @@ class NDArrayTest {
         NDArray<Integer[]> flatArray = array.flatten();
         assertEquals(1, flatArray.ndim());
         assertEquals(8L, flatArray.size());
+
+        // Convert Object[] to Integer[] safely
+        Object[] flattenedArray = (Object[]) flatArray.getArray();
+        Integer[] result = Arrays.copyOf(flattenedArray, flattenedArray.length, Integer[].class);
+
+        // Expected flattened data
         Integer[] expectedFlattenedData = {1, 2, 3, 4, 5, 6, 7, 8};
-        assertArrayEquals(expectedFlattenedData, (Integer[]) flatArray.getArray());
+        assertArrayEquals(expectedFlattenedData, result);
     }
 }
