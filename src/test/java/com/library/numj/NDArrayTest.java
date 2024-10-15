@@ -55,9 +55,10 @@ class NDArrayTest {
     @Test
     public void testFlatten() throws ShapeException
     {
-        NDArray<Integer> flattened = array.flatten();
-        assertEquals(1, flattened.ndim());
-        assertEquals(Arrays.asList(8), flattened.shape());
-        assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8}, (Integer[])flattened.getArray());
+        NDArray<Integer[]> flatArray = array.flatten();
+        assertEquals(1, flatArray.ndim());
+        assertEquals(8L, flatArray.size());
+        Integer[] expectedFlattenedData = {1, 2, 3, 4, 5, 6, 7, 8};
+        assertArrayEquals(expectedFlattenedData, (Integer[]) flatArray.getArray());
     }
 }
